@@ -25,74 +25,65 @@ class Solution {
         int top = 0;
         int no = 0;
         int num = 0;
-        try {
-            for (int i = 0; i < 100; i++) {
-                // l1, l2 null 여부 파악
-                String num1 = Integer.toString(l1.val);
-                String num2 = Integer.toString(l2.val);
+        for (int i = 0; i < 100; i++) {
+            // l1, l2 null 여부 파악
 
-                System.out.println(i + " is : " + num1 + " : " + num2);
-                System.out.println(i + " is : " + isInteger(num1) + " : " + isInteger(num2));
-                System.out.println(Integer.valueOf(num2) == null);
+            Integer num1 = Integer.valueOf(l1.val);
+            Integer num2 = Integer.valueOf(l2.val);
 
-                // l1, l2 둘 다 null이 아닐 경우
-                if (isInteger(num1) && isInteger(num2)) {
-                    no = l1.val + l2.val;
+            System.out.println(num1 + " : " + num2);
 
-                    if (top == 0) { // top = 0
-                        if (no > 9) {
-                            top = 1;
-                            no -= 10;
-                        } else {
-                            top = 0;
-                        }
-                    } else { // top =1
-                        no = l1.val + l2.val + top;
-                        if (no > 9) {
-                            top = 1;
-                            no -= 10;
-                        } else {
-                            top = 0;
-                        }
+            // l1, l2 둘 다 null이 아닐 경우
+            if ((num1 != null) && (num2 != null)) {
+                no = l1.val + l2.val;
+
+                if (top == 0) { // top = 0
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
                     }
-
-                    list.add(no);
-
-                    l1 = l1.next;
-                    l2 = l2.next;
-
-                    if ((Integer.valueOf(num1) == null) || (Integer.valueOf(num2) == null)) {
-                        continue;
+                } else { // top =1
+                    no = l1.val + l2.val + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
                     }
-
-                    System.out.println(l1 + " : " + l2);
                 }
-                // else if (isInteger(num1) && (Integer.valueOf(num2) == null)) { // l2가 null인
-                // 경우
-                // no = l1.val + top;
-                // if (no > 9) {
-                // top = 1;
-                // no -= 10;
-                // } else {
-                // top = 0;
-                // }
-                // list.add(no);
-                // l1 = l1.next;
-                // } else if (isInteger(num2) && !isInteger(num1)) { // l1이 null인 경우
-                // no = l2.val + top;
-                // if (no > 9) {
-                // top = 1;
-                // no -= 10;
-                // } else {
-                // top = 0;
-                // }
-                // list.add(no);
-                // l2 = l2.next;
-                // }
-            }
 
-        } catch (NullPointerException e) {
-            System.out.println(e);
+                list.add(no);
+
+                l1 = l1.next;
+                l2 = l2.next;
+
+            } else {
+                // l1, l2 둘 중 하나는 null인 경우
+                if (isInteger(Integer.toString(l1.val)) && !isInteger(Integer.toString(l2.val))) { // l2가 null인 경우
+                    no = l1.val + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                    l1 = l1.next;
+                } else if (isInteger(Integer.toString(l2.val)) && !isInteger(Integer.toString(l1.val))) { // l1이 null인
+                                                                                                          // 경우
+                    no = l2.val + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                    l2 = l2.next;
+                }
+            }
         }
         System.out.println(list);
 
