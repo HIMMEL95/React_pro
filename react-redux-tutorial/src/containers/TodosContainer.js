@@ -2,22 +2,37 @@ import { changeInput, insert, toggle, remove } from '../modules/todos';
 import Todos from '../components/Todos';
 import { connect } from 'react-redux';
 
-const TodosContainer = ({changeInput, insert, toggle, remove}) => {
-    return (
-        <Todos todo={changeInput} onSubmit={changeInput} />
-    );
+const TodosContainer = ({
+  input,
+  todos,
+  changeInput,
+  insert,
+  toggle,
+  remove,
+}) => {
+  return (
+    <Todos
+      input={input}
+      todos={todos}
+      onChangeInput={changeInput}
+      onInsert={insert}
+      onToggle={toggle}
+      onRemove={remove}
+    />
+  );
 };
 
 export default connect(
-    (state) => ({
-        input: state.todos.input,
-    }),
-    {
-        changeInput,
-        insert,
-        toggle,
-        remove
-    }
-)
+  ({ todos }) => ({
+    input: todos.input,
+    todos: todos.todos,
+  }),
+  {
+    changeInput,
+    insert,
+    toggle,
+    remove,
+  },
+)(TodosContainer);
 
 // export default TodosContainer;
