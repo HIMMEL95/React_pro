@@ -97,11 +97,36 @@
   text-decoration: none;
 }
 
+.snsBtn {
+  display: flex;
+  margin: 0 10px;
+}
+
 .btn-icon {
   background: white;
   color: black;
   font-size: large;
   font-weight: 700;
+}
+
+.btn-google {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  font-size: large;
+  font-weight: 800;
+  border-radius: 0.5rem solid black;
+  margin: 0 10px;
+}
+
+.btn-facebook {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  font-size: large;
+  font-weight: 800;
+  border-radius: 0.5rem solid black;
+  margin: 0 10px;
 }
 
 .btn-google:hover {
