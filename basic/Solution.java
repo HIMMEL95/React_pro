@@ -1,6 +1,7 @@
 package basic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public static void main(String[] args) {
@@ -24,75 +25,19 @@ class Solution {
         ArrayList<Integer> list = new ArrayList();
         int top = 0;
         int no = 0;
-        while ((Integer.toString(l1.val) != null) && (Integer.toString(l2.val) != null)) {
-            // l1, l2 null 여부 파악
 
-            System.out.println(isInteger(Integer.toString(l1.val)) + " : " + isInteger(Integer.toString(l2.val)));
+        List<Integer> l1List = makeList(l1);
+        List<Integer> l2List = makeList(l2);
 
-            Integer num1 = Integer.valueOf(l1.val);
-            Integer num2 = Integer.valueOf(l2.val);
+        System.out.println(l1List);
+        System.out.println(l2List);
 
-            System.out.println(num1 + " : " + num2);
+        System.out.println(l1List.size());
+        System.out.println(l2List.size());
 
-            // l1, l2 둘 다 null이 아닐 경우
-            if ((num1 != null) && (num2 != null)) {
-                no = l1.val + l2.val;
+        while (l1List.size() - l2List.size() > 0) {
 
-                if (top == 0) { // top = 0
-                    if (no > 9) {
-                        top = 1;
-                        no -= 10;
-                    } else {
-                        top = 0;
-                    }
-                } else { // top =1
-                    no = l1.val + l2.val + top;
-                    if (no > 9) {
-                        top = 1;
-                        no -= 10;
-                    } else {
-                        top = 0;
-                    }
-                }
-
-                list.add(no);
-
-                l1 = l1.next;
-                l2 = l2.next;
-
-            } else {
-                // l1, l2 둘 중 하나는 null인 경우
-                if (isInteger(Integer.toString(l1.val)) && !isInteger(Integer.toString(l2.val))) { // l2가 null인 경우
-                    no = l1.val + top;
-                    if (no > 9) {
-                        top = 1;
-                        no -= 10;
-                    } else {
-                        top = 0;
-                    }
-                    list.add(no);
-                    l1 = l1.next;
-                } else if (isInteger(Integer.toString(l2.val)) && !isInteger(Integer.toString(l1.val))) { // l1이 null인
-                                                                                                          // 경우
-                    no = l2.val + top;
-                    if (no > 9) {
-                        top = 1;
-                        no -= 10;
-                    } else {
-                        top = 0;
-                    }
-                    list.add(no);
-                    l2 = l2.next;
-                }
-            }
         }
-
-        if (Integer.valueOf(l1.val) == null) {
-            System.out.println("l1.val is null ");
-        } else {
-            System.out.println("l2.val is null");
-        }
-        System.out.println(list);
 
         for (int i = list.size(); i > 0; i--) {
             if (i != 0) {
@@ -114,5 +59,21 @@ class Solution {
         } catch (NullPointerException e) {
             return false;
         }
+    }
+
+    public static List<Integer> makeList(ListNode ln) {
+
+        List<Integer> list = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < 100; i++) {
+                list.add(Integer.valueOf(ln.val));
+                ln = ln.next;
+            }
+        } catch (NullPointerException e) {
+
+        }
+
+        return list;
     }
 }
