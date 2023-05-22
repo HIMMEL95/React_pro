@@ -24,9 +24,10 @@ class Solution {
         ArrayList<Integer> list = new ArrayList();
         int top = 0;
         int no = 0;
-        int num = 0;
-        for (int i = 0; i < 100; i++) {
+        while ((Integer.toString(l1.val) != null) && (Integer.toString(l2.val) != null)) {
             // l1, l2 null 여부 파악
+
+            System.out.println(isInteger(Integer.toString(l1.val)) + " : " + isInteger(Integer.toString(l2.val)));
 
             Integer num1 = Integer.valueOf(l1.val);
             Integer num2 = Integer.valueOf(l2.val);
@@ -85,6 +86,12 @@ class Solution {
                 }
             }
         }
+
+        if (Integer.valueOf(l1.val) == null) {
+            System.out.println("l1.val is null ");
+        } else {
+            System.out.println("l2.val is null");
+        }
         System.out.println(list);
 
         for (int i = list.size(); i > 0; i--) {
@@ -98,10 +105,13 @@ class Solution {
     }
 
     public static boolean isInteger(String strValue) {
+        System.out.println(strValue);
         try {
             Integer.parseInt(strValue);
             return true;
         } catch (NumberFormatException ex) {
+            return false;
+        } catch (NullPointerException e) {
             return false;
         }
     }

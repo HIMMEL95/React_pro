@@ -1,10 +1,9 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Login.css";
 import logo from "./MZC.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faFacebook } from "@fortawesome/free-brands-svg-icons";
 import LoginForm from "./Login";
 import { Link } from "react-router-dom";
 
