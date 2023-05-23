@@ -32,7 +32,7 @@ class Login extends Component {
               <div className="loginCard-body">
                 <div className="loginCard-title">Login</div>
                 <div className="loginInput">
-                  <LoginForm getInput={this.handleInput} />
+                  <LogincdForm getInput={this.handleInput} />
                   <div className="row">
                     <Link to="/forgot" className="forgetBtn">
                       Forgot your password?

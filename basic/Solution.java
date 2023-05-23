@@ -29,15 +29,90 @@ class Solution {
         List<Integer> l1List = makeList(l1);
         List<Integer> l2List = makeList(l2);
 
-        System.out.println(l1List);
-        System.out.println(l2List);
+        int size = (l1List.size() > l2List.size() ? l2List.size() : l1List.size());
+        int total = (l1List.size() > l2List.size() ? l1List.size() : l2List.size());
 
-        System.out.println(l1List.size());
-        System.out.println(l2List.size());
-
-        while (l1List.size() - l2List.size() > 0) {
-
+        for (int i = 0; i < size; i++) {
+            if (i == 0) {
+                no = l1List.get(i) + l2List.get(i);
+                if (no > 9) {
+                    top = 1;
+                    no -= 10;
+                }
+                list.add(no);
+            } else {
+                if (top == 0) {
+                    no = l1List.get(i) + l2List.get(i);
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                } else {
+                    no = l1List.get(i) + l2List.get(i) + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                }
+            }
         }
+
+        if (total == l1List.size()) {
+            for (int i = size; i < total; i++) {
+                if (top == 0) {
+                    no = l1List.get(i);
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                } else {
+                    no = l1List.get(i) + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                }
+            }
+        } else {
+            for (int i = size; i < total; i++) {
+                if (top == 0) {
+                    no = l2List.get(i);
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                } else {
+                    no = l2List.get(i) + top;
+                    if (no > 9) {
+                        top = 1;
+                        no -= 10;
+                    } else {
+                        top = 0;
+                    }
+                    list.add(no);
+                }
+            }
+        }
+
+        if (top == 1) {
+            list.add(top);
+        }
+        System.out.println(list + " : " + top);
 
         for (int i = list.size(); i > 0; i--) {
             if (i != 0) {
